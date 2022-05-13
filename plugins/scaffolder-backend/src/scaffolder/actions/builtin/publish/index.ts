@@ -20,6 +20,7 @@ export { createPublishBitbucketCloudAction } from './bitbucketCloud';
 export { createPublishBitbucketServerAction } from './bitbucketServer';
 export { createPublishFileAction } from './file';
 export { createPublishGithubAction } from './github';
+export { createPublishGithubTemplateAction } from './githubTemplate';
 export { createPublishGithubPullRequestAction } from './githubPullRequest';
 export type {
   CreateGithubPullRequestClientFactoryInput,
