@@ -225,6 +225,12 @@ export function createPublishGithubTemplateAction(options: {
         throw new InputError('Invalid repository owner provided in repoUrl');
       }
 
+      if (!templateOwner) {
+        throw new InputError(
+          'Invalid template repository owner provided in templateUrl',
+        );
+      }
+
       const octokitOptions = await getOctokitOptions({
         integrations,
         credentialsProvider: githubCredentialsProvider,
@@ -233,12 +239,6 @@ export function createPublishGithubTemplateAction(options: {
       });
 
       const client = new Octokit(octokitOptions);
-
-      const user = await client.rest.users.getByUsername({
-        username: owner,
-      });
-
-      // TODO: To check if a repository is available to use as a template, get the repository's information using the Get a repository endpoint and check that the is_template key is true.
 
       const repoTemplatePromise = client.rest.repos.get({
         owner: templateOwner,
