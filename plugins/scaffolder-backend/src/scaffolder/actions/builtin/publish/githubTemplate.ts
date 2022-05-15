@@ -245,6 +245,8 @@ export function createPublishGithubTemplateAction(options: {
         repo: templateRepo,
       });
 
+      // TODO: Catch repo not found error and act upon it.
+      // TODO: Catch Unprocessable Entity: "Could not clone: Name already exists on this account"
       const { data: repoTemplate } = await repoTemplatePromise;
 
       if (!repoTemplate.is_template) {
@@ -258,9 +260,11 @@ export function createPublishGithubTemplateAction(options: {
         template_repo: templateRepo,
         name: repo,
         owner: owner,
-        private: repoVisibility === 'private',
+        private: true,
         description: description,
       });
+      
+      // TODO: Update repository visibility settings to public/internal/private if configured to do so
 
       const { data: newRepo } = await repoCreationPromise;
       if (access?.startsWith(`${owner}/`)) {
