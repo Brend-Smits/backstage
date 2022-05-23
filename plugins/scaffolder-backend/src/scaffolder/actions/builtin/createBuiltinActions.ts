@@ -41,6 +41,7 @@ import {
   createPublishBitbucketServerAction,
   createPublishGithubAction,
   createPublishGithubPullRequestAction,
+  createPublishGithubTemplateAction,
   createPublishGitlabAction,
   createPublishGitlabMergeRequestAction,
 } from './publish';
@@ -112,6 +113,11 @@ export const createBuiltinActions = (
       additionalTemplateFilters,
     }),
     createPublishGithubAction({
+      integrations,
+      config,
+      githubCredentialsProvider,
+    }),
+    createPublishGithubTemplateAction({
       integrations,
       config,
       githubCredentialsProvider,
