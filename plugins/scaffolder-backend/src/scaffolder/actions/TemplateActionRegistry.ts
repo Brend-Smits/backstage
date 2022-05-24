@@ -37,8 +37,11 @@ export class TemplateActionRegistry {
   get(actionId: string): TemplateAction<JsonObject> {
     const action = this.actions.get(actionId);
     if (!action) {
+      this.actions.forEach((value: TemplateAction<any>, key: string) => {
+        console.log(key, value);
+      });
       throw new NotFoundError(
-        `Template action with ID '${actionId}' is not registered.`,
+        `Template action with ID '${actionId}' is not registered: test`,
       );
     }
     return action;
